@@ -1,3 +1,10 @@
+<?php
+// Get the contents of the JSON file 
+$data = file_get_contents("./data/data.json");
+$data_arr = json_decode($data, true);
+// var_dump($data_arr[1]); // print array
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,92 +42,100 @@
 
         <section class="pendaftaran">
             <div class="container-sm">
-                <h2 class="text-center p-5">Detail Penerbangan</h2>
+                <h2 class="text-center p-5">Pendaftaran Rute Penerbangan</h2>
                 <form class="row g-3 col-md-6 mx-auto box shadow">
                     <div class="col-md-12">
                         <label for="inputEmail4" class="form-label">Maskapai</label>
                         <input type="email" class="form-control" id="inputEmail4">
+
                     </div>
                     <div class="col-md-6">
-                        <label for="inputCity" class="form-label">Dari</label>
-                        <select id="inputCity" class="form-select">
+                        <label for="asalBandara" class="form-label">Bandara Asal</label>
+                        <select id="asalBandara" class="form-select">
                             <option selected>Pilih...</option>
-                            <option>...</option>
+                            <option>Soekarno-Hatta (CGK)</option>
+                            <option>Husein Sastranegara (BDO)</option>
                         </select>
                     </div>
                     <div class="col-md-6">
-                        <label for="inputState" class="form-label">Ke</label>
-                        <select id="inputState" class="form-select">
+                        <label for="tujuanBandara" class="form-label">Bandara Tujuan</label>
+                        <select id="tujuanBandara" class="form-select">
                             <option selected>Pilih...</option>
-                            <option>...</option>
+                            <option>Sultan Iskandarmuda (BTJ)</option>
+                            <option>Hasanuddin (UPG)</option>
+                            <option>Ngurah Rai (DPS)</option>
                         </select>
                     </div>
 
-                    <div class="col-12">
+                    <div class="col-md-12">
                         <label for="inputAddress" class="form-label">Harga Tiket</label>
-                        <input type="number" class="form-control" id="inputAddress" placeholder="Rp">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Rp</span>
+                            <input type="number" class="form-control">
+                        </div>
                     </div>
 
                     <button type="submit" class="btn btn-success mt-4 mb-4">
                         <i class="bi bi-search"></i>
-                        Cari</button>
+                        Tambah</button>
 
                 </form>
             </div>
         </section>
         <section class="hasil-rute" id="hasil-rute">
             <div class="container-sm mt-5 mb-5 pb-5">
-                <h2 class="text-center p-5">Rute Tersedia</h2>
-                <form class="row g-3 col-md-8 mx-auto box shadow">
-
-
-                    <div class="col-md-4">
-                        <i class="fas fa-circle mini"></i>
-                        <i class="fas fa-circle mini"></i>
-                        <i class="fas fa-circle mini"></i>
-                        <i class="fas fa-plane"></i>
-                        <br>
-                        <label for="" class="form-label mt-2"> Adam Air</label>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="col-md-12">
-                            <i class="fas fa-circle"></i>
-                            <label for="inputEmail4" class="form-label">Soekarno-Hatta (CGK)</label>
-                        </div>
-                        <i class="fas fa-circle dot"></i>
-                        <br>
-                        <i class="fas fa-circle dot"></i>
-                        <i class="fas fa-arrow-down"></i>
-                        <br>
-                        <i class="fas fa-circle dot"></i>
-                        <div class="col-md-12">
-                            <i class="fas fa-circle"></i>
-                            <label for="inputEmail4" class="form-label">Sultan Iskandarmuda (BTJ)</label>
-                            </g>
-                        </div>
-                    </div>
-
-                    <div class="col-md-2">
-                        <div class="col-md-12">
-                            <p class="form-label fs-6 fw-light">Harga Tiket: </p>
-                            <label for="" class="form-label">Rp200000</label>
-                        </div>
-                        <div class="col-md-12">
-                            <p class="form-label fs-6 fw-light">Pajak: </p>
-                            <label for="" class="form-label">Rp100000</label>
-                        </div>
-                        <hr>
-                        <div class="col-md-12 ">
-                            <p class="form-label fs-6 fw-bold">Total : </p>
-                            <label for="" class="form-label total">Rp1500000</label>
+                <h2 class="text-center p-5">Daftar Rute Tersedia</h2>
+                <?php foreach ($data_arr as $data) : ?>
+                    <form class="row g-3 col-md-10 mx-auto box shadow mt-4">
+                        <div class="col-md-4">
+                            <i class="fas fa-circle mini"></i>
+                            <i class="fas fa-circle mini"></i>
+                            <i class="fas fa-circle mini"></i>
+                            <i class="fas fa-plane"></i>
+                            <br>
+                            <p class="form-content"> <?= $data[0]; ?></p>
                         </div>
 
+                        <div class="col-md-4">
+                            <div class="col-md-12">
+                                <i class="fas fa-circle"></i>
+                                <p class="fw-bold"> <?= $data[1]; ?></p>
 
-                    </div>
+                            </div>
+                            <i class="fas fa-circle dot"></i>
+                            <br>
+                            <i class="fas fa-circle dot"></i>
+                            <!-- <i class="fas fa-arrow-down"></i> -->
+                            <br>
+                            <i class="fas fa-circle dot"></i>
 
+                            <div class="col-md-12">
+                                <br>
+                                <i class="fas fa-circle"></i>
+                                <p class="fw-bold"> <?= $data[2]; ?></p>
+                                </g>
+                            </div>
+                        </div>
 
-                </form>
+                        <div class="col-md-4 text-md-end">
+                            <div class="col-md-12">
+                                <p class="form-label fs-6 fw-bold">Harga Tiket: </p>
+                                <p class="fw-light"> <?= $data[3]; ?></p>
+                                <hr>
+                            </div>
+                            <div class="col-md-12">
+                                <p class="form-label fs-6 fw-bold">Pajak: </p>
+                                <p class="fw-light"> <?= $data[4]; ?></p>
+                                <hr>
+                            </div>
+
+                            <div class="col-md-12">
+                                <p class="form-label fs-6 fw-bold">Total: </p>
+                                <p class="total"> Rp<?= $data[3]; ?></p>
+                            </div>
+                        </div>
+                    </form>
+                <?php endforeach; ?>
             </div>
         </section>
     </main>
