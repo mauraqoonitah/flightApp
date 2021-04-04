@@ -1,0 +1,91 @@
+                @import url('https://fonts.googleapis.com/css2?family=Andika+New+Basic&family=Palanquin+Dark&display=swap');
+                body,
+                html {
+                    background-color: rgb(245, 247, 249);
+                    color: #2e353b;
+                    font-family: 'Andika New Basic', sans-serif;
+                    font-size: 1.1rem;
+                }
+                
+                h1,
+                h2,
+                h3,
+                h4,
+                h5,
+                h6,
+                nav {
+                    font-family: 'Palanquin Dark', sans-serif;
+                    font-weight: 100;
+                }
+                
+                h1,
+                .h1 {
+                    font-size: 2.5rem;
+                }
+                
+                h2,
+                .h2 {
+                    font-size: 2.2rem;
+                }
+                
+                h3,
+                .h3 {
+                    font-size: 2.0rem;
+                }
+                
+                h4,
+                .h4 {
+                    font-size: 1.8rem;
+                }
+                
+                h5,
+                .h5 {
+                    font-size: 1.5rem;
+                }
+                
+                p {
+                    font-size: 1.25rem;
+                }
+                
+                main {
+                    margin: 12px;
+                }
+                
+                .form-label {
+                    font-weight: bold;
+                }
+                
+                .box {
+                    background-color: white;
+                    padding: 1.2rem;
+                    border-radius: .5rem;
+                }
+                
+                .navbar {
+                    background-color: white;
+                }
+                
+                i.fas.fa-circle {
+                    font-size: 10px;
+                    color: grey;
+                    margin-right: 8px;
+                }
+                
+                i.fas.fa-circle.mini {
+                    font-size: 8px;
+                    color: lightgrey;
+                    margin-right: 8px;
+                }
+                
+                i.fas.fa-circle.dot {
+                    font-size: 6px;
+                    color: lightgrey;
+                    margin-right: 8px;
+                }
+                
+                .total {
+                    background-color: rgb(197, 196, 196);
+                    border-radius: .2rem;
+                    padding: .5rem;
+                    color: red;
+                }
