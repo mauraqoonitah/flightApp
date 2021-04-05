@@ -13,13 +13,38 @@ h3,
 h4,
 h5,
 h6,
-nav {
+nav,
+.btn-heroes {
     font-family: 'Palanquin Dark', sans-serif;
     font-weight: 100;
 }
 
+.navbar-nav .nav-link {
+    padding: 10px 0;
+    font-size: 1.2rem;
+}
+
+.btn-heroes {
+    background-color: #dc3324;
+}
+
+.btn-heroes:hover {
+    background-color: rgb(168, 168, 168);
+    color: #2e353b;
+}
+
+.btn-heroes-outline {
+    background-color: rgb(245, 247, 249);
+    border: 1px solid rgb(220, 51, 36);
+}
+
+.btn-heroes-outline:hover {
+    background-color: rgb(220, 51, 36);
+    color: white;
+}
+
 hr {
-    color: #80cbc4;
+    color: rgba(220, 51, 36, 0.623);
 }
 
 h1,
@@ -101,7 +126,7 @@ i.fas.fa-circle.dot {
 }
 
 p.form-content {
-    color: #009688;
+    color: rgb(220, 50, 36);
     font-weight: bold;
     font-size: larger;
 }
@@ -153,4 +178,26 @@ p.form-content {
     width: 3px;
     background-color: rgba(144, 164, 174, .4);
     transform: translate(3.4px, -7px);
+}
+
+section#heroes {
+    margin: 0;
+    padding: 5rem 0;
+}
+
+section#pendaftaran,
+section#hasil-rute {
+    margin-top: 8rem;
+    padding-top: 2rem;
+}
+
+span.navbar-brand {
+    color: rgb(220, 51, 36);
+}
+
+@media screen and (max-width: 768px) {
+    .navbar-nav .nav-link {
+        padding: 10px 0;
+        font-size: 1.2rem;
+    }
 }

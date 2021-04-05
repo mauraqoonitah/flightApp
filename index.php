@@ -1,11 +1,3 @@
-<?php
-// Get the contents of the JSON file 
-$data = file_get_contents("./data/data.json");
-$data_arr = json_decode($data, true);
-// var_dump($data_arr[1]); // print array
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,26 +15,61 @@ $data_arr = json_decode($data, true);
     <link rel="stylesheet" href="./library/css/style.css">
     <!-- fontawesome icon -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
-
     <title>Flight</title>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light shadow-sm">
+    <?php
+    // Get the contents of the JSON file 
+    $data = file_get_contents("./data/data.json");
+    $data_arr = json_decode($data, true);
+    // var_dump($data_arr[1]); // print array
+
+    ?>
+
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light shadow-sm">
         <div class="container">
             <a class="navbar-brand" href="#">
                 <img src="./gambar/icon.png" alt="" width="30" height="30" class="d-inline-block align-text-top">
-                <span class="navbar-brand mb-0 h5 ">Flight</span>
+                <span class="navbar-brand mb-0 h5">Flight</span>
             </a>
-        </div>
 
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+
+                <div class="navbar-nav">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link" href="#pendaftaran">Daftar</a>
+                    <a class="nav-link" href="#hasil-rute">Rute</a>
+                </div>
+
+            </div>
         </div>
     </nav>
 
+
+    <!-- heroes -->
+    <section id="heroes">
+        <div class="px-4 py-5 my-5 text-center">
+            <img class="d-block mx-auto mb-4" src="./gambar/icon.png" alt="" width="72" height="72">
+            <h1 class="display-5 fw-bold">Flight</h1>
+            <div class="col-lg-6 mx-auto">
+                <p class="mb-5 fs-4">Daftarkan penerbangan dengan maskapai terbaikmu <br>dan Rencanakan perjalanan dengan akses ke berbagai rute penerbangan!</p>
+                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                    <a href="#pendaftaran" type="button" class="btn btn-lg px-4 me-sm-3 btn-heroes text-white">Daftar Penerbangan</a>
+                    <a href="#hasil-rute" type="button" class="btn btn-lg px-4 btn-heroes-outline fw-bold">Lihat Rute Penerbangan</a>
+                </div>
+            </div>
+        </div>
+    </section>
     <main>
+
         <!-- =============== SECTION PENDAFTARAN RUTE PENERBANGAN ================= -->
-        <section class="pendaftaran">
-            <div class="container-sm">
+        <section id="pendaftaran">
+            <div class="container-sm mt-5">
                 <h2 class="text-center p-5">Pendaftaran Rute Penerbangan</h2>
                 <form class="row g-3 col-md-6 mx-auto box shadow">
                     <div class="col-md-12">
@@ -76,7 +103,7 @@ $data_arr = json_decode($data, true);
                         </div>
                     </div>
 
-                    <button type="submit" class="btn btn-success my-4 fw-bold">
+                    <button type="submit" class="btn btn-heroes my-4 text-white">
                         TAMBAH</button>
 
                 </form>
@@ -134,14 +161,14 @@ $data_arr = json_decode($data, true);
                             <!-- =============== HARGA TIKET ================= -->
                             <div class="col-md-12 px-4 py-2">
                                 <p class="form-label fs-6 fw-bold d-inline pb-5">Harga Tiket : </p>
-                                <p class="fw-light d-inline"> <?= $data[3]; ?></p>
+                                <p class="fw-light d-inline"> Rp <?= $data[3]; ?></p>
                                 <hr class="mt-2 mb-2">
                             </div>
 
                             <!-- =============== PAJAK ================= -->
                             <div class="col-md-12 px-4 py-2">
                                 <p class="form-label fs-6 fw-bold d-inline">Pajak : </p>
-                                <p class="fw-light d-inline"> <?= $data[4]; ?></p>
+                                <p class="fw-light d-inline">Rp <?= $data[4]; ?></p>
                                 <hr class="mt-2 mb-2">
                             </div>
 
@@ -159,5 +186,10 @@ $data_arr = json_decode($data, true);
     </main>
 
 </body>
+
+<!-- navbar toggler collapse -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 </html>
