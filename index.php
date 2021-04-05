@@ -71,41 +71,49 @@
         <section id="pendaftaran">
             <div class="container-sm mt-5">
                 <h2 class="text-center p-5">Pendaftaran Rute Penerbangan</h2>
-                <form class="row g-3 col-md-6 mx-auto box shadow">
+                <!-- Form pendaftaran rute -->
+                <form action="" method="POST" class="row g-3 col-md-6 mx-auto box shadow">
                     <div class="col-md-12">
-                        <label for="inputEmail4" class="form-label">Maskapai</label>
+                        <label for="inputEmail4" class="form-label fw-bold">Maskapai</label>
                         <input type="email" class="form-control" id="inputEmail4">
 
                     </div>
-                    <div class="col-md-6">
-                        <label for="asalBandara" class="form-label">Bandara Asal</label>
-                        <select id="asalBandara" class="form-select">
+                    <!-- form bandara asal -->
+                    <div class="form-group col-md-6">
+                        <label for="asalBandara" class="form-label fw-bold">Bandara Asal</label>
+                        <select id="asalBandara" class="form-select" name="asalBandara">
                             <option selected>Pilih...</option>
-                            <option>Soekarno-Hatta (CGK)</option>
-                            <option>Husein Sastranegara (BDO)</option>
-                        </select>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="tujuanBandara" class="form-label">Bandara Tujuan</label>
-                        <select id="tujuanBandara" class="form-select">
-                            <option selected>Pilih...</option>
-                            <option>Sultan Iskandarmuda (BTJ)</option>
-                            <option>Hasanuddin (UPG)</option>
-                            <option>Ngurah Rai (DPS)</option>
+                            <option value="Soekarno-Hatta (CGK)">Soekarno-Hatta (CGK)</option>
+                            <option value="Husein Sastranegara (BDO)">Husein Sastranegara (BDO)</option>
+                            <option value="Abdul Rachman Saleh (MLG)">Abdul Rachman Saleh (MLG)</option>
+                            <option value="Juanda (SUB)">Juanda (SUB)</option>
                         </select>
                     </div>
 
-                    <div class="col-md-12">
-                        <label for="inputAddress" class="form-label">Harga Tiket</label>
+                    <!-- form bandara tujuan -->
+                    <div class="form-group col-md-6">
+                        <label for="tujuanBandara" class="form-label fw-bold">Bandara Tujuan</label>
+                        <select id="tujuanBandara" class="form-select">
+                            <option selected>Pilih...</option>
+                            <option value="Ngurah Rai (DPS)">Ngurah Rai (DPS)</option>
+                            <option value="Hasanuddin (UPG)">Hasanuddin (UPG)</option>
+                            <option value="Inanwatan (INX)">Inanwatan (INX)</option>
+                            <option value="Sultan Iskandarmuda (BTJ)">Sultan Iskandarmuda (BTJ)</option>
+                        </select>
+                    </div>
+
+                    <!-- form harga tiket -->
+                    <div class="form-group col-md-12">
+                        <label for="inputAddress" class="form-label fw-bold">Harga Tiket</label>
                         <div class="input-group mb-3">
                             <span class="input-group-text">Rp</span>
-                            <input type="number" class="form-control">
+                            <input type="number" name="hargaTiket" class="form-control">
                         </div>
                     </div>
 
-                    <button type="submit" class="btn btn-heroes my-4 text-white">
-                        TAMBAH</button>
-
+                    <!-- button submit form -->
+                    <button type="submit" name="submit" value="submit" class="btn btn-heroes my-4 text-white">
+                        SUBMIT</button>
                 </form>
             </div>
         </section>
@@ -114,7 +122,10 @@
         <section class="hasil-rute" id="hasil-rute">
             <div class="container-sm mt-5 mb-5 pb-5">
                 <h2 class="text-center p-5">Daftar Rute Tersedia</h2>
+
+                <!-- perulangan form hasil rute -->
                 <?php foreach ($data_arr as $data) : ?>
+                    <!-- form -->
                     <form class="row g-3 col-lg-6 mx-auto box shadow mt-4">
                         <div class="col-md-6 px-3">
 
@@ -183,6 +194,32 @@
             </div>
 
         </section>
+
+        <?php
+        // rincian pajak bandara asal
+        $PajakBandaraAsal = [
+            ["Soekarno-Hatta (CGK)", 50000],
+            ["Husein Sastranegara(BDO)", 30000],
+            ["Abdul Rachman Saleh (MLG)", 40000],
+            ["Juanda (SUB)", 40000]
+        ];
+        // rincian pajak bandara tujuan
+        $PajakBandaraTujuan = [
+            ["Ngurah Rai (DPS)", 80000],
+            ["Hasanuddin (UPG)", 70000],
+            ["Inanwatan (INX)", 90000],
+            ["Sultan Iskandarmuda (BTJ)", 70000],
+        ];
+
+        // kondisi jika tombol submit diklik
+        if (isset($_POST['submit'])) {
+            // ambil data yang telah diinput
+            $maskapai = $_POST['maskapai'];
+            $asalBandara = $_POST['asalBandara'];
+            $tujuanBandara = $_POST['tujuanBandara'];
+            $hargaTiket = $_POST['hargaTiket'];
+        }
+        ?>
     </main>
 
 </body>
