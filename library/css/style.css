@@ -29,8 +29,8 @@ nav,
 }
 
 .btn-heroes:hover {
-    background-color: rgb(168, 168, 168);
-    color: #2e353b;
+    background-color: rgb(0, 0, 0);
+    color: white;
 }
 
 .btn-heroes-outline {

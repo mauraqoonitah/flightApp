@@ -22,14 +22,33 @@
     <?php
     $data = file_get_contents("./data/data.json");
     $data_arr = json_decode($data, true);
+
+    function notificationAlert()
+    {
+        if (isset($_POST['submit'])) {
+
+            if (
+                empty($_POST['maskapai']) || empty($_POST['asalBandara']) ||
+                empty($_POST['tujuanBandara']) || empty($_POST['hargaTiket'])
+            ) {
+                echo    `<div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Berhasil!</strong> Data berhasil ditambahkan.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>`;
+                echo gagalAlert();
+            } else {
+                echo suksesAlert();
+            }
+        }
+    }
     ?>
+
     <nav class="navbar fixed-top navbar-expand-lg navbar-light shadow-sm">
         <div class="container">
             <a class="navbar-brand" href="#">
                 <img src="./gambar/icon.png" alt="" width="30" height="30" class="d-inline-block align-text-top">
                 <span class="navbar-brand mb-0 h5">Flight</span>
             </a>
-
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -67,12 +86,14 @@
         <section id="pendaftaran">
             <div class="container-sm mt-5">
                 <h2 class="text-center p-5">Pendaftaran Rute Penerbangan</h2>
+
                 <!-- Form pendaftaran rute -->
                 <form action="" method="POST" class="row g-3 col-md-6 mx-auto box shadow">
+                    <?php notificationAlert(); ?>
+
                     <div class="col-md-12">
                         <label for="maskapai" class="form-label fw-bold">Maskapai</label>
                         <input type="text" name="maskapai" class="form-control" id="maskapai">
-
 
                     </div>
                     <!-- form bandara asal -->
@@ -109,13 +130,30 @@
                     </div>
 
                     <!-- button submit form -->
-                    <button type="submit" name="submit" value="submit" class="btn btn-heroes my-4 text-white">
+                    <button name="submit" class="btn btn-heroes my-4 text-white">
                         SUBMIT</button>
                 </form>
             </div>
         </section>
 
         <?php
+        // jika kondisi form terisi dan tombol submit diklik, fungsi suksesAlert akan terpanggil
+        function suksesAlert()
+        {
+            echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Berhasil!</strong> Data ditambahkan.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>';
+        }
+        // jika kondisi form ada yang masih kosong dan tombol submit diklik, fungsi gagalAlert akan terpanggil
+        function gagalAlert()
+        {
+            echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Gagal Ditambahkan!</strong> Data masih kosong.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>';
+        }
+
         // rincian pajak bandara asal
         $PajakBandaraAsal = [
             ["Soekarno-Hatta (CGK)", 50000],
@@ -136,7 +174,8 @@
         // kondisi jika tombol submit diklik
         if (isset($_POST['submit'])) {
             // ambil data yang telah diinput
-            $maskapai = $_POST['maskapai'];
+            $maskapai = ucfirst($_POST['maskapai']);
+            //ucfirst untuk auto capital pada huruf pertama untuk nantinya akan mudah di sort
             $asalBandara = $_POST['asalBandara'];
             $tujuanBandara = $_POST['tujuanBandara'];
             $hargaTiket = $_POST['hargaTiket'];
@@ -166,12 +205,15 @@
             // memasukkan data baru yang diinput, kedalam bentuk array
             array_push($data_arr, $data_arr_baru);
 
+
+            sort($data_arr);
             // ubah array ke json format
             $data = json_encode($data_arr, JSON_PRETTY_PRINT);
 
             // masukkan data baru array ke dalam file data.json
             file_put_contents("./data/data.json", $data);
-        }
+        };
+
         ?>
 
         <!-- =============== SECTION DAFTAR RUTE TERSEDIA ================= -->
@@ -227,7 +269,7 @@
 
                             <!-- =============== HARGA TIKET ================= -->
                             <div class="col-md-12 px-4 py-2">
-                                <p class="form-label fs-6 fw-bold d-inline pb-5">Harga Tiket : </p>
+                                <p class="form-label fs-6 fw-bold d-inline pb-5">Harga Tiket : <br></p>
                                 <p class="fw-light d-inline"> Rp <?= $data[3]; ?></p>
                                 <hr class="mt-2 mb-2">
                             </div>
@@ -251,9 +293,6 @@
 
         </section>
     </main>
-
-
-
 
 </body>
 

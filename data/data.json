@@ -8,6 +8,22 @@
         2120000
     ],
     [
+        "Air Fly Indonesia",
+        "Husein Sastranegara (BDO)",
+        "Ngurah Rai (DPS)",
+        "125000",
+        110000,
+        235000
+    ],
+    [
+        "Aku",
+        "Pilih...",
+        "Pilih...",
+        "",
+        null,
+        null
+    ],
+    [
         "Batik",
         "Husein Sastranegara (BDO)",
         "Sultan Iskandarmuda (BTJ)",
@@ -32,6 +48,14 @@
         209000
     ],
     [
+        "Gak",
+        "Pilih...",
+        "Pilih...",
+        "",
+        0,
+        0
+    ],
+    [
         "Garuda Indonesia",
         "Soekarno-Hatta (CGK)",
         "Ngurah Rai (DPS)",
@@ -40,19 +64,19 @@
         1630000
     ],
     [
-        "coba",
-        "Abdul Rachman Saleh (MLG)",
-        "Hasanuddin (UPG)",
-        "12",
-        110000,
-        110012
+        "Masuk gak sih",
+        "Pilih...",
+        "Pilih...",
+        "",
+        0,
+        0
     ],
     [
-        "masuk",
-        "Soekarno-Hatta (CGK)",
-        "Ngurah Rai (DPS)",
-        "23",
-        130000,
-        130023
+        "Red Air",
+        "Husein Sastranegara (BDO)",
+        "Hasanuddin (UPG)",
+        "150000",
+        100000,
+        250000
     ]
 ]
