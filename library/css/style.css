@@ -182,12 +182,11 @@ p.form-content {
 
 section#heroes {
     margin: 0;
-    padding: 5rem 0;
+    padding-top: 5rem;
 }
 
 section#pendaftaran,
 section#hasil-rute {
-    margin-top: 8rem;
     padding-top: 2rem;
 }
 

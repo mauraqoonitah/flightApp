@@ -20,13 +20,9 @@
 
 <body>
     <?php
-    // Get the contents of the JSON file 
     $data = file_get_contents("./data/data.json");
     $data_arr = json_decode($data, true);
-    // var_dump($data_arr[1]); // print array
-
     ?>
-
     <nav class="navbar fixed-top navbar-expand-lg navbar-light shadow-sm">
         <div class="container">
             <a class="navbar-brand" href="#">
@@ -119,6 +115,74 @@
             </div>
         </section>
 
+        <?php
+        // rincian pajak bandara asal
+        $PajakBandaraAsal = [
+            ["Soekarno-Hatta (CGK)", 50000],
+            ["Husein Sastranegara (BDO)", 30000],
+            ["Abdul Rachman Saleh (MLG)", 40000],
+            ["Juanda (SUB)", 40000]
+        ];
+
+
+        // rincian pajak bandara tujuan
+        $PajakBandaraTujuan = [
+            ["Ngurah Rai (DPS)", 80000],
+            ["Hasanuddin (UPG)", 70000],
+            ["Inanwatan (INX)", 90000],
+            ["Sultan Iskandarmuda (BTJ)", 70000],
+        ];
+
+        // kondisi jika tombol submit diklik
+        if (isset($_POST['submit'])) {
+            // ambil data yang telah diinput
+            $maskapai = $_POST['maskapai'];
+            $asalBandara = $_POST['asalBandara'];
+            $tujuanBandara = $_POST['tujuanBandara'];
+            $hargaTiket = $_POST['hargaTiket'];
+
+            // menentukan jika kondisi input asal dan tujuan bandara sama dengan data di json (sesuai index), maka tentukan pajak asal dan tujuan nya
+
+            for ($i = 0; $i < 4; $i++) {
+                if ($asalBandara == $PajakBandaraAsal[$i][0]) {
+                    $pajakAsal = $PajakBandaraAsal[$i][1];
+                }
+                if ($tujuanBandara == $PajakBandaraTujuan[$i][0]) {
+                    $pajakTujuan = $PajakBandaraTujuan[$i][1];
+                }
+            }
+            $pajakTotal = $pajakAsal + $pajakTujuan;
+            $hargaTotal = $pajakTotal + $hargaTiket;
+
+            var_dump("maskapai : " . $maskapai);
+            var_dump("asal  : " . $asalBandara);
+            var_dump("tujuan : " . $tujuanBandara);
+            var_dump("harga tiket : " . $hargaTiket);
+            var_dump("pajak asal : " . $pajakAsal);
+            var_dump("pajak tujuan : " . $pajakTujuan);
+            var_dump("pajak total: " . $pajakTotal);
+            var_dump("harga total: " . $hargaTotal);
+
+            for ($j = 0; $j < count($data_arr); $j++) {
+
+                $data_arr_baru = [
+                    $data_arr[$j][0] => $maskapai,
+                    $data_arr[$j][1] => $asalBandara,
+                    $data_arr[$j][2] => $tujuanBandara,
+                    $data_arr[$j][3] => $hargaTiket,
+                    $data_arr[$j][4] => $pajakTotal,
+                    $data_arr[$j][5] => $hargaTotal,
+
+                ];
+            }
+
+            var_dump("jumlah data json: " . count($data_arr));
+            var_dump("data json: " . $data_arr);
+            var_dump("jumlah data baru: " . count($data_arr_baru));
+            var_dump("data baru: " . $data_arr_baru);
+        }
+        ?>
+
         <!-- =============== SECTION DAFTAR RUTE TERSEDIA ================= -->
         <section class="hasil-rute" id="hasil-rute">
             <div class="container-sm mt-5 mb-5 pb-5">
@@ -127,7 +191,7 @@
                 <!-- perulangan form hasil rute -->
                 <?php foreach ($data_arr as $data) : ?>
                     <!-- form -->
-                    <form class="row g-3 col-lg-6 mx-auto box shadow mt-4">
+                    <form action="" method="POST" class="row g-3 col-lg-6 mx-auto box shadow mt-4">
                         <div class="col-md-6 px-3">
 
                             <i class="fas fa-circle mini"></i>
@@ -198,52 +262,7 @@
     </main>
 
 
-    <?php
-    // rincian pajak bandara asal
-    $PajakBandaraAsal = [
-        ["Soekarno-Hatta (CGK)", 50000],
-        ["Husein Sastranegara(BDO)", 30000],
-        ["Abdul Rachman Saleh (MLG)", 40000],
-        ["Juanda (SUB)", 40000]
-    ];
 
-
-    // rincian pajak bandara tujuan
-    $PajakBandaraTujuan = [
-        ["Ngurah Rai (DPS)", 80000],
-        ["Hasanuddin (UPG)", 70000],
-        ["Inanwatan (INX)", 90000],
-        ["Sultan Iskandarmuda (BTJ)", 70000],
-    ];
-
-    // kondisi jika tombol submit diklik
-    if (isset($_POST['submit'])) {
-        // ambil data yang telah diinput
-        $maskapai = $_POST['maskapai'];
-        $asalBandara = $_POST['asalBandara'];
-        $tujuanBandara = $_POST['tujuanBandara'];
-        $hargaTiket = $_POST['hargaTiket'];
-
-        // menentukan jika kondisi input asal dan tujuan bandara sama dengan data di json (sesuai index), maka tentukan pajak asal dan tujuan nya
-
-        for ($i = 0; $i < 4; $i++) {
-            if ($asalBandara == $PajakBandaraAsal[$i][0]) {
-                $pajakAsal = $PajakBandaraAsal[$i][1];
-            }
-            if ($tujuanBandara == $PajakBandaraTujuan[$i][0]) {
-                $pajakTujuan = $PajakBandaraTujuan[$i][1];
-            }
-        }
-        $pajakTotal = $pajakAsal + $pajakTujuan;
-        $hargaTotal = $pajakTotal + $hargaTiket;
-
-        var_dump("maskapai : " . $maskapai);
-        var_dump("asal  : " . $asalBandara);
-        var_dump("tujuan : " . $tujuanBandara);
-        var_dump("pajak total: " . $pajakTotal);
-        var_dump("harga total: " . $hargaTotal);
-    }
-    ?>
 
 </body>
 
