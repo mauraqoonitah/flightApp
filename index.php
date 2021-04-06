@@ -80,10 +80,10 @@
                         <label for="asalBandara" class="form-label fw-bold">Bandara Asal</label>
                         <select id="asalBandara" class="form-select" name="asalBandara">
                             <option selected>Pilih...</option>
-                            <option value="Soekarno-Hatta (CGK)">Soekarno-Hatta (CGK)</option>
-                            <option value="Husein Sastranegara (BDO)">Husein Sastranegara (BDO)</option>
-                            <option value="Abdul Rachman Saleh (MLG)">Abdul Rachman Saleh (MLG)</option>
-                            <option value="Juanda (SUB)">Juanda (SUB)</option>
+                            <option>Soekarno-Hatta (CGK)</option>
+                            <option>Husein Sastranegara (BDO)</option>
+                            <option>Abdul Rachman Saleh (MLG)</option>
+                            <option>Juanda (SUB)</option>
                         </select>
                     </div>
 
@@ -92,10 +92,10 @@
                         <label for="tujuanBandara" class="form-label fw-bold">Bandara Tujuan</label>
                         <select id="tujuanBandara" class="form-select" name="tujuanBandara">
                             <option selected>Pilih...</option>
-                            <option value="Ngurah Rai (DPS)">Ngurah Rai (DPS)</option>
-                            <option value="Hasanuddin (UPG)">Hasanuddin (UPG)</option>
-                            <option value="Inanwatan (INX)">Inanwatan (INX)</option>
-                            <option value="Sultan Iskandarmuda (BTJ)">Sultan Iskandarmuda (BTJ)</option>
+                            <option>Ngurah Rai (DPS)</option>
+                            <option>Hasanuddin (UPG)</option>
+                            <option>Inanwatan (INX)</option>
+                            <option>Sultan Iskandarmuda (BTJ)</option>
                         </select>
                     </div>
 
@@ -154,32 +154,23 @@
             $pajakTotal = $pajakAsal + $pajakTujuan;
             $hargaTotal = $pajakTotal + $hargaTiket;
 
-            var_dump("maskapai : " . $maskapai);
-            var_dump("asal  : " . $asalBandara);
-            var_dump("tujuan : " . $tujuanBandara);
-            var_dump("harga tiket : " . $hargaTiket);
-            var_dump("pajak asal : " . $pajakAsal);
-            var_dump("pajak tujuan : " . $pajakTujuan);
-            var_dump("pajak total: " . $pajakTotal);
-            var_dump("harga total: " . $hargaTotal);
+            // tambah data baru berbentuk array
+            $data_arr_baru = [
+                $maskapai,
+                $asalBandara,
+                $tujuanBandara,
+                $hargaTiket,
+                $pajakTotal,
+                $hargaTotal,
+            ];
+            // memasukkan data baru yang diinput, kedalam bentuk array
+            array_push($data_arr, $data_arr_baru);
 
-            for ($j = 0; $j < count($data_arr); $j++) {
+            // ubah array ke json format
+            $data = json_encode($data_arr, JSON_PRETTY_PRINT);
 
-                $data_arr_baru = [
-                    $data_arr[$j][0] => $maskapai,
-                    $data_arr[$j][1] => $asalBandara,
-                    $data_arr[$j][2] => $tujuanBandara,
-                    $data_arr[$j][3] => $hargaTiket,
-                    $data_arr[$j][4] => $pajakTotal,
-                    $data_arr[$j][5] => $hargaTotal,
-
-                ];
-            }
-
-            var_dump("jumlah data json: " . count($data_arr));
-            var_dump("data json: " . $data_arr);
-            var_dump("jumlah data baru: " . count($data_arr_baru));
-            var_dump("data baru: " . $data_arr_baru);
+            // masukkan data baru array ke dalam file data.json
+            file_put_contents("./data/data.json", $data);
         }
         ?>
 
@@ -251,7 +242,7 @@
                             <!-- =============== TOTAL HARGA ================= -->
                             <div class="col-md-12 px-4 py-2">
                                 <p class="total-label fs-6 fw-bold d-inline">Total: </p>
-                                <p class="total d-inline"> Rp <?= $data[3]; ?></p>
+                                <p class="total d-inline"> Rp <?= $data[5]; ?></p>
                             </div>
                         </div>
                     </form>
