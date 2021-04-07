@@ -63,7 +63,7 @@ Run your application using Web Server (XAMPP) and Web Browser (Chrome/Firefox/et
 
 1. Pada halaman utama klik tombol daftar penerbangan jika ingin menambah rute atau klik lihat rute penerbangan untuk menampilkan daftar rute tersedia.
 2. Isi form tambah rute penerbangan, klik submit, data akan tersimpan dan muncul notifikasi jika sudah berhasil.
-3. Hasil rute akan menampilkan rute penerbangan yang tersedia sesuai dengan nama maskapai berurutkan abjad.
+3. Hasil rute akan menampilkan rute penerbangan yang tersedia sesuai dengan nama maskapai berurutkan abjad. (bisa dilihat melalui tabel maupun dari container dibawahnya)
 
 <img src="https://github.com/mauraqoonitah/flightApp/blob/master/Screenshot_FlightApp.png" width="800">
 
