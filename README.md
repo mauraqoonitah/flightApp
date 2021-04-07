@@ -65,7 +65,7 @@ Run your application using Web Server (XAMPP) and Web Browser (Chrome/Firefox/et
 2. Isi form tambah rute penerbangan, klik submit, data akan tersimpan dan muncul notifikasi jika sudah berhasil.
 3. Hasil rute akan menampilkan rute penerbangan yang tersedia sesuai dengan nama maskapai berurutkan abjad.
 
-<img src="" width="800">
+<img src="https://github.com/mauraqoonitah/flightApp/blob/master/Screenshot_FlightApp.png" width="800">
 
 ## Contact
 
