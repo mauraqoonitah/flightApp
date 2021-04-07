@@ -227,8 +227,34 @@
             <div class="container-sm mt-5 mb-5 pb-5">
                 <h2 class="text-center p-5">Daftar Rute Tersedia</h2>
 
+                <!-- menampilkan hasil rute dalam bentuk tabel -->
+                <div class="table-responsive container col-lg-10 mx-auto mb-5">
+                    <table class="table table-striped table-bordered">
+                        <thead class="table-dark text-center">
+                            <th scope="col">Maskapai</th>
+                            <th scope="col">Asal Penerbangan</th>
+                            <th scope="col">Tujuan Penerbangan</th>
+                            <th scope="col">Harga Tiket</th>
+                            <th scope="col">Pajak</th>
+                            <th scope="col">Harga Total</th>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($data_arr as $data) : ?>
+                                <tr>
+                                    <td class="fw-bold text-danger"><?php echo $data[0]; ?></td>
+                                    <td><?php echo $data[1]; ?></td>
+                                    <td><?php echo $data[2]; ?></td>
+                                    <td><?php echo $data[3]; ?></td>
+                                    <td><?php echo $data[4]; ?></td>
+                                    <td><?php echo $data[5]; ?></td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
 
-                <!-- perulangan form hasil rute -->
+                <!-- menampilkan hasil rute dalam bentuk container -->
+                <!-- dengan perulangan form hasil rute -->
                 <?php foreach ($data_arr as $data) : ?>
                     <!-- form -->
                     <form action="" method="POST" class="row g-3 col-lg-6 mx-auto box shadow mt-4">
