@@ -211,8 +211,7 @@
             // memasukkan data baru yang diinput, kedalam bentuk array
             array_push($data_arr, $data_arr_baru);
 
-
-            sort($data_arr);
+            array_multisort($data_arr, SORT_ASC);
             // ubah array ke json format
             $data = json_encode($data_arr, JSON_PRETTY_PRINT);
 
