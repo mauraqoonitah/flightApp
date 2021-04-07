@@ -20,7 +20,13 @@
 
 <body>
     <?php
-    $data = file_get_contents("./data/data.json");
+    // simpan path file json ke dalam variabel
+    $file = "./data/data.json";
+
+    // mengambil file json 
+    $data = file_get_contents($file);
+
+    // generate array json ke array php
     $data_arr = json_decode($data, true);
 
     function notificationAlert()
@@ -220,6 +226,7 @@
         <section class="hasil-rute" id="hasil-rute">
             <div class="container-sm mt-5 mb-5 pb-5">
                 <h2 class="text-center p-5">Daftar Rute Tersedia</h2>
+
 
                 <!-- perulangan form hasil rute -->
                 <?php foreach ($data_arr as $data) : ?>

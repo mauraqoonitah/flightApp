@@ -16,14 +16,6 @@
         235000
     ],
     [
-        "Aku",
-        "Pilih...",
-        "Pilih...",
-        "",
-        null,
-        null
-    ],
-    [
         "Batik",
         "Husein Sastranegara (BDO)",
         "Sultan Iskandarmuda (BTJ)",
@@ -48,14 +40,6 @@
         209000
     ],
     [
-        "Gak",
-        "Pilih...",
-        "Pilih...",
-        "",
-        0,
-        0
-    ],
-    [
         "Garuda Indonesia",
         "Soekarno-Hatta (CGK)",
         "Ngurah Rai (DPS)",
@@ -64,12 +48,12 @@
         1630000
     ],
     [
-        "Masuk gak sih",
-        "Pilih...",
-        "Pilih...",
-        "",
-        0,
-        0
+        "Maura",
+        "Husein Sastranegara (BDO)",
+        "Hasanuddin (UPG)",
+        "230000",
+        100000,
+        330000
     ],
     [
         "Red Air",
