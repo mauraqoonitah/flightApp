@@ -143,6 +143,7 @@
         </section>
 
         <?php
+
         // jika kondisi form terisi dan tombol submit diklik, fungsi suksesAlert akan terpanggil
         function suksesAlert()
         {
@@ -177,17 +178,13 @@
             ["Sultan Iskandarmuda (BTJ)", 70000],
         ];
 
-        // kondisi jika tombol submit diklik
-        if (isset($_POST['submit'])) {
-            // ambil data yang telah diinput
-            $maskapai = ucfirst($_POST['maskapai']);
-            //ucfirst untuk auto capital pada huruf pertama untuk nantinya akan mudah di sort
-            $asalBandara = $_POST['asalBandara'];
-            $tujuanBandara = $_POST['tujuanBandara'];
-            $hargaTiket = $_POST['hargaTiket'];
+        // fungsi untuk menjumlahkan pajak asal dengan pajak tujuan
+
+        function totalPajak($asalBandara, $tujuanBandara)
+        {
+            global $PajakBandaraAsal, $PajakBandaraTujuan;
 
             // menentukan jika kondisi input asal dan tujuan bandara sama dengan data di json (sesuai index), maka tentukan pajak asal dan tujuan nya
-
             for ($i = 0; $i < 4; $i++) {
                 if ($asalBandara == $PajakBandaraAsal[$i][0]) {
                     $pajakAsal = $PajakBandaraAsal[$i][1];
@@ -196,8 +193,23 @@
                     $pajakTujuan = $PajakBandaraTujuan[$i][1];
                 }
             }
-            $pajakTotal = $pajakAsal + $pajakTujuan;
-            $hargaTotal = $pajakTotal + $hargaTiket;
+            return $pajakAsal + $pajakTujuan;
+        }
+
+        function totalHarga($pajakTotal, $hargaTiket)
+        {
+            return $pajakTotal + $hargaTiket;
+        }
+
+        // kondisi jika tombol submit diklik
+        if (isset($_POST['submit'])) {
+            // ambil data yang telah diinput
+            $maskapai = $_POST['maskapai'];
+            $asalBandara = $_POST['asalBandara'];
+            $tujuanBandara = $_POST['tujuanBandara'];
+            $hargaTiket = $_POST['hargaTiket'];
+            $pajakTotal = totalPajak($asalBandara, $tujuanBandara);
+            $hargaTotal = totalHarga($pajakTotal, $hargaTiket);
 
             // tambah data baru berbentuk array
             $data_arr_baru = [
@@ -211,7 +223,9 @@
             // memasukkan data baru yang diinput, kedalam bentuk array
             array_push($data_arr, $data_arr_baru);
 
+            // mengurutkan maskapai sesuai abjad 
             array_multisort($data_arr, SORT_ASC);
+
             // ubah array ke json format
             $data = json_encode($data_arr, JSON_PRETTY_PRINT);
 
@@ -227,7 +241,7 @@
                 <h2 class="text-center p-5">Daftar Rute Tersedia</h2>
 
                 <!-- menampilkan hasil rute dalam bentuk tabel -->
-                <div class="table-responsive container col-lg-10 mx-auto mb-5">
+                <div class="table-responsive container col-lg-12 mx-auto mb-5">
                     <table class="table table-striped table-bordered">
                         <thead class="table-dark text-center">
                             <th scope="col">Maskapai</th>
@@ -243,9 +257,9 @@
                                     <td class="fw-bold text-danger"><?php echo $data[0]; ?></td>
                                     <td><?php echo $data[1]; ?></td>
                                     <td><?php echo $data[2]; ?></td>
-                                    <td><?php echo $data[3]; ?></td>
-                                    <td><?php echo $data[4]; ?></td>
-                                    <td><?php echo $data[5]; ?></td>
+                                    <td>Rp <?php echo $data[3]; ?></td>
+                                    <td>Rp <?php echo $data[4]; ?></td>
+                                    <td>Rp <?php echo $data[5]; ?></td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
